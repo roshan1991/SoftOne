@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+
+<div class="col-12 row">
+  <div class="flex-lg-row flex-column-reverse col-12 row">
+<!--table-->
+    <div class="col-lg-8 col-sm-12 ms-lg-0 ms-sm-4 mt-3">
+      <app-table [inputTitle]="'Task Table'" [inputColData]="tableColumns"  [inputRowData]="tableRows | async" (searchText)="tableSearch($event)" (rowEditClicked)="editTask($event)" (rowDeleteClicked)="deleteTask($event)"></app-table>
+    </div>
+<!--    table end-->
+<!-- add edite delete-->
+    <div class="col-lg-4 col-sm-12 mt-3 ms-lg-0 ms-sm-4 mb-sm-3" [formGroup]="addTaskFormGrp">
+      <div class="card card-body row">
+        <div class="col-12 text-center pb-4">
+          <h1 class="card-title">Add Task</h1>
+        </div>
+      <div class="col-12 text-center row">
+      <div class="col-12">
+        <div class="form-floating">
+          <input type="email" class="form-control" id="Title" [formControlName]="'title'" placeholder="Title">
+          <label for="Title">Title</label>
+        </div>
+      </div>
+       <div class="col-12">
+         <div class="form-floating mt-3">
+           <textarea class="form-control" placeholder="Description" id="description" [formControlName]="'description'" style="height: 100px"></textarea>
+           <label for="description">Description</label>
+         </div>
+       </div>
+        <div class="col-12">
+          <div class="form-floating mt-3">
+            <input type="date" class="form-control" (change)="dateChange($event)" [formControlName]="'dueDate'" placeholder="Due Date" id="dueDate" style="height: 100px"/>
+            <label for="dueDate">Due Date</label>
+          </div>
+        </div>
+        <div class="col-12 pt-3" [formControlName]="'taskStatus'">
+          <input  type="radio" class="btn-check" name="options" id="inprocess" autocomplete="off" [checked]="addTaskFormGrp.get('taskStatus')?.value == 'inprocess'" (change)="addTaskFormGrp.get('taskStatus')?.patchValue('inprocess')">
+          <label class="btn btn-outline-warning btn-lg  m-2" for="inprocess">In Process</label>
+
+          <input type="radio" class="btn-check" name="options" id="completed" autocomplete="off" [checked]="addTaskFormGrp.get('taskStatus')?.value == 'completed'" (change)="addTaskFormGrp.get('taskStatus')?.patchValue('completed')">
+          <label class="btn btn-outline-success btn-lg m-2" for="completed">Completed</label>
+        </div>
+      </div>
+        <div class="col-12 text-center row">
+          <div class="col-12 text-center">
+            <button class="btn btn-lg btn-outline-info mt-3 me-2 w-50" (click)="addTaskFormGrp.get('id')?.value != null ? updateTask()  : AddTask() ">{{addTaskFormGrp.get('id')?.value != null ? 'Update'  : 'Add'}}</button>
+            <button class="btn btn-lg btn-outline-danger mt-3 w-auto" (click)="addTaskFormGrp.reset()">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  -->
+
+</div>

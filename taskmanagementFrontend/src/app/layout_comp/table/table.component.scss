@@ -1,0 +1,8 @@
+@media screen and (max-width: 560px) {
+  th:last-child, td:last-child
+  {
+    position:sticky !important;
+    right: 0 !important;
+  }
+
+}

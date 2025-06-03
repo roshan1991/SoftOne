@@ -1,0 +1,67 @@
+
+@media screen and (min-width: 991px) {
+  .ms-lg-0 {
+    margin-left: 0 !important
+  }
+
+  .ms-lg-1 {
+    margin-left: .25rem !important
+  }
+
+  .ms-lg-2 {
+    margin-left: .5rem !important
+  }
+
+  .ms-lg-3 {
+    margin-left: 1rem !important
+  }
+
+  .ms-lg-4 {
+    margin-left: 1.5rem !important
+  }
+
+  .ms-lg-5 {
+    margin-left: 3rem !important
+  }
+
+  .ms-lg-auto {
+    margin-left: auto !important
+  }
+
+}
+
+@media screen and (max-width: 560px) {
+
+  .ms-sm-0 {
+    margin-left: 0 !important
+  }
+
+  .ms-sm-1 {
+    margin-left: .25rem !important
+  }
+
+  .ms-sm-2 {
+    margin-left: .5rem !important
+  }
+
+  .ms-sm-3 {
+    margin-left: 1rem !important
+  }
+
+  .ms-sm-4 {
+    margin-left: 1.5rem !important
+  }
+
+  .ms-sm-5 {
+    margin-left: 3rem !important
+  }
+
+  .ms-sm-auto {
+    margin-left: auto !important
+  }
+
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  font-size: 200% !important;
+}

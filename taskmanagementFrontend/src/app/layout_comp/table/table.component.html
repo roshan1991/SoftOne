@@ -1,0 +1,53 @@
+<div class="table-title">
+  <div class="row">
+    <div class="col-sm-8"><h2>{{title}}</h2></div>
+    <div class="col-sm-4">
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text"><i class="bi bi-search"></i></span>
+        <input [formControl]="searchControl" type="text" class="form-control" placeholder="Search" aria-label="search" >
+      </div>
+    </div>
+  </div>
+</div>
+<div class="table-responsive mt-3">
+  <table class="table" *ngIf="tableColumnData">
+    <thead class="table-dark">
+    <tr>
+      <th *ngFor="let col of tableColumnData" scope="col"  class="" (click)="tableSort(col)" ><span >{{col}}</span></th>
+    </tr>
+    </thead>
+    <tbody *ngIf="(tableRowData | async)?.length > 0;else noData">
+    <tr *ngFor="let rowvalue of (tableRowData | async)">
+
+      <th  scope="row">{{rowvalue['id']}}</th>
+      <th >{{rowvalue['name']}}</th>
+      <th title="{{rowvalue['description']}}">{{rowvalue['description'].length > 33 ?  (rowvalue['description'] | slice : 0:15 )+'...':rowvalue['description']}}</th>
+      <th >{{rowvalue['dueDate'] }}</th>
+      <th >
+        <ng-container [ngTemplateOutlet]="processBtn" [ngTemplateOutletContext]="{val:rowvalue['isCompleted']}">
+        </ng-container>
+      </th>
+      <th >
+        <div>
+          <button class="btn btn-sm btn-info me-1" (click)="editeClick(rowvalue)"><i class="bi bi-pen text-white"></i></button>
+          <button class="btn btn-sm btn-danger" (click)="deleteClick(rowvalue)"><i class="bi bi-x-lg text-white"></i></button>
+        </div>
+      </th>
+
+    </tr>
+
+    </tbody>
+    <ng-template #noData>
+      <tbody class="w-100 text-center">
+      <tr>
+        <td colspan="14">{{searchControl.value != '' ? 'No data available for '+ searchControl.value: 'No data available'}} </td>
+      </tr>
+      </tbody>
+    </ng-template>
+  </table>
+</div>
+
+<ng-template #processBtn let-val='val'>
+  <button *ngIf="val" class="btn btn-warning text-white btn-sm shadow-sm"> In Process</button>
+  <button *ngIf="!val" class="btn btn-success text-white btn-sm shadow-sm">Completed</button>
+</ng-template>

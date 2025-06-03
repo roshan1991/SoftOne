@@ -1,0 +1,38 @@
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card bg-light text-dark" style="border-radius: 1rem;">
+        <div class="card-body p-4 pb-0 text-center shadow">
+          <div class="mb-md-5 mt-md-4 pb-5" [formGroup]="loginform">
+            <img src="/static/logo.png" alt="" width="200" height="200" class="d-inline-block align-text-top">
+            <hr class="border-black"/>
+            <h1 class="fw-bold mb-2 text-uppercase">Login</h1>
+            <p class="text-black-50 mb-5"></p>
+            <div data-mdb-input-init class="form-outline form-white mb-4 row">
+
+              <div class="input-group mb-1 shadow-sm pe-0">
+                <label class="form-label col-form-label-lg pe-4 border-black" for="username"><i class="bi bi-person-fill fs-2"></i></label>
+                <input [formControlName]="'username'" type="text" class="form-control fs-3" placeholder="Username" aria-label="Username" id="username" aria-describedby="basic-addon1">
+
+              </div>
+              <p *ngIf="errors.username != ''" class="text-danger  mb-0 ">{{errors.username}}</p>
+            </div>
+
+            <div data-mdb-input-init class="form-outline form-white mb-4 row">
+
+              <div class="input-group mb-1 shadow-sm pe-0">
+                <label class="form-label col-form-label-lg pe-4" for="password">
+                  <i class="bi bi-key-fill fs-2"></i></label>
+                <input [formControlName]="'password'"  type="password" class="form-control fs-3" placeholder="Password" aria-label="password" id="password" aria-describedby="basic-addon1">
+
+              </div>
+              <p *ngIf="errors.password != ''" class="text-danger mb-0">{{errors.password}}</p>
+
+            </div>
+            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-dark btn-lg px-5 shadow" type="submit" (click)="submit()">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
